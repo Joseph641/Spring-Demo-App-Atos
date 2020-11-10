@@ -1,5 +1,7 @@
 package net.atos.demo.persistence.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,6 +9,8 @@ import javax.persistence.Id;
 @Entity
 public class Cat {
 
+	
+	
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -23,6 +27,15 @@ public class Cat {
 	public Cat() {
 		super();
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Cat [id=" + id + ", breed=" + breed + ", age=" + age + ", colour=" + colour + ", size=" + size + "]";
+	}
+
+
 
 	public Long getId() {
 		return id;
@@ -65,4 +78,8 @@ public class Cat {
 	}
 	
 	
+	
+
+
+
 }
