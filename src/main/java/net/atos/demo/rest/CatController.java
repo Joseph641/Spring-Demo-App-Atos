@@ -2,6 +2,8 @@ package net.atos.demo.rest;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,30 +35,35 @@ public class CatController {
 	}
 	
 	@PostMapping("/create")
-	public Cat createCat(@RequestBody Cat cat) {
-		 return this.service.createCat(cat);
+	public ResponseEntity<Cat> createCat(@RequestBody Cat cat) {
+		 return new ResponseEntity<Cat>(this.service.createCat(cat), HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/read")
-	public List<Cat> readCats() {
-		return this.service.getCats();
+	public ResponseEntity<List<Cat>> readCats() {
+		return ResponseEntity.ok(this.service.getCats());
 		 }
 	
 	@GetMapping("/read/{id}")
-	public Cat readCat(@PathVariable Long id) {
-		return this.service.getCatByID(id);
+	public ResponseEntity<Cat>readCat(@PathVariable Long id) {
+		return ResponseEntity.ok(this.service.getCatByID(id));
 		}
 	
 	@PutMapping("/update/{id}")
-	public Cat updateCat(@PathVariable Long id, @RequestBody Cat newData) {
-		
-		return this.service.UpdateCatById(id, newData);
-		
-				
-	}
+	public ResponseEntity<Cat> updateCat(@PathVariable Long id, @RequestBody Cat newData) {
+		return new ResponseEntity<Cat>(this.service.UpdateCatById(id, newData), HttpStatus.ACCEPTED);
+		}
 	
 	@DeleteMapping("/delete/{id}")
-	public boolean deleteCat(@PathVariable Long id) {
-		return this.service.deleteCatById(id);
+	public ResponseEntity<? > deleteCat(@PathVariable Long id) {
+		//return this.service.deleteCatById(id);
+		boolean deleted = this.service.deleteCatById(id);
+		
+		if (deleted) {
+			return ResponseEntity.ok(deleted);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);			
+			
+		}
 	}
 }
