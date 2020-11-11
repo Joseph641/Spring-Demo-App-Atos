@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+@Entity // req
 public class Cat {
 
 	
@@ -23,7 +23,7 @@ public class Cat {
 	
 	private String size;
 	
-	//Constructor
+	//Constructor required 
 	public Cat() {
 		super();
 	}
