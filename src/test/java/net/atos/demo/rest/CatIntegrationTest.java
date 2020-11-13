@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.web.servlet.MockMvc;
@@ -28,10 +29,11 @@ import net.atos.demo.persistence.domain.Cat;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // avoids port conflict, two things run on the same port
 
 @AutoConfigureMockMvc 
-// reads th esql scripts in src/main.resources and executes them Before each test 
+// reads the sql scripts in src/main.resources and executes them Before each test 
 @Sql(scripts = {"classpath:cat-schema.sql", 
 		"classpath:cat-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 
+@ActiveProfiles("test")
 public class CatIntegrationTest {
 
 	@Autowired

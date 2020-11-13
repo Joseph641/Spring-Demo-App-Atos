@@ -49,6 +49,7 @@ public class CatController {
 		return ResponseEntity.ok(this.service.getCatByID(id));
 		}
 	
+	//Enum -> enumerated values
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Cat> updateCat(@PathVariable Long id, @RequestBody Cat newData) {
 		return new ResponseEntity<Cat>(this.service.UpdateCatById(id, newData), HttpStatus.ACCEPTED);
