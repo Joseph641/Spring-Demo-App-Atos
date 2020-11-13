@@ -8,6 +8,7 @@ class SpringDemoAppApplicationTests {
 
 	@Test
 	void contextLoads() {
+		//smoke test
 	}
 
 }

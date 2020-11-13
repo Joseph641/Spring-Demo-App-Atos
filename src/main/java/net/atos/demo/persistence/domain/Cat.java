@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // req
@@ -12,7 +13,7 @@ public class Cat {
 	
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String breed;
@@ -28,14 +29,19 @@ public class Cat {
 		super();
 	}
 	
-	
+//	@Override
+//	public String toString() {
+//		return "Cat [id=" + id + ", breed=" + breed + ", age=" + age + ", colour=" + colour + ", size=" + size + "]";
+//	}
 
-	@Override
-	public String toString() {
-		return "Cat [id=" + id + ", breed=" + breed + ", age=" + age + ", colour=" + colour + ", size=" + size + "]";
-	}
-
-
+public Cat(Long id, String breed, int age, String colour, String size) {
+	super();
+	this.id = id;
+	this.breed = breed;
+	this.age = age;
+	this.colour = colour;
+	this.size = size;
+}
 
 	public Long getId() {
 		return id;

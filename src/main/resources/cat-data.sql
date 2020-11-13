@@ -1,0 +1,1 @@
+insert into cat (age, breed, colour, size) values (4, 'Manx', 'Black', 'L');
